@@ -1,341 +1,267 @@
 import React from "react";
-import { Instagram, Facebook, MapPin, UtensilsCrossed } from "lucide-react";
-import { LuMapPin, LuUtensils } from "react-icons/lu";        // Lucide style icons
-import { SiInstagram, SiFacebook, SiTiktok, SiYelp, SiGooglemaps } from "react-icons/si"; // brand logos
+import "./App.css";
 
+import { LuMapPin, LuUtensils, LuPhone, LuClock, LuStar } from "react-icons/lu";
+import { SiInstagram, SiFacebook, SiYoutube, SiYelp, SiGooglemaps } from "react-icons/si";
 
-// --- Replace these with your real business info ---
-const RESTAURANT_NAME = "Your Vietnamese Kitchen"; // temporary name
+// --- Business info (replace these) ---
+const RESTAURANT_NAME = "Your Vietnamese Kitchen";
 const PHONE = "(555) 123-4567";
-const ADDRESS = "1234 Lotus Ave, Sacramento, CA";
+const ADDRESS = "Fair Oaks, 2610 Fair Oaks Blvd, Sacramento, CA 95864";
+const WAITLIST_URL = "https://www.yelp.com/biz/saigon-oi-sacramento"; // replace with your Yelp waitlist if you have one
+const INSTAGRAM_URL = "https://www.instagram.com/_saigonoi/";         // replace with your IG
+const MAPS_URL  = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 const HOURS = [
-  { day: "Mon–Thu", time: "11:00 AM – 9:00 PM" },
-  { day: "Fri–Sat", time: "11:00 AM – 10:00 PM" },
-  { day: "Sun", time: "11:30 AM – 8:00 PM" },
+  { day: "Mon", time: "10:00 AM – 5:00 PM" },
+  { day: "Tue", time: "10:00 AM – 5:00 PM" },
+  { day: "Wed", time: "Closed" },
+  { day: "Thu", time: "10:00 AM – 5:00 PM" },
+  { day: "Fri", time: "10:00 AM – 5:00 PM" },
+  { day: "Sat", time: "10:00 AM – 5:00 PM" },
+  { day: "Sun", time: "10:00 AM – 5:00 PM" },
 ];
 
-// Menu preview content – tweak freely
+// Signature dishes (inspired by Saigon Oi)
+const SIGNATURES = [
+  { name: "Bánh Mì Chảo", img: "/images/signature-bmc.jpg", blurb: "Sizzling skillet with filet mignon, egg, pâté & more." },
+  { name: "Bánh Canh Cua", img: "/images/signature-bcc.jpg", blurb: "Rich crab udon soup with shrimp & quail egg." },
+  { name: "Bánh Khọt",    img: "/images/signature-bk.jpg",  blurb: "Crispy mini rice cakes, herbs & nước chấm." },
+];
+
+// Menu preview
 const MENU_CATEGORIES = [
   {
     name: "Phở (Noodle Soup)",
-    blurb:
-      "Slow-simmered broth with rice noodles, fresh herbs, and your choice of protein.",
-    items: ["Phở Tái (Rare Beef)", "Phở Gà (Chicken)", "Phở Đặc Biệt (House Special)"],
+    blurb: "Slow-simmered broths with rice noodles & herbs.",
+    items: ["Phở Tái", "Phở Gà", "Phở Đặc Biệt"],
   },
   {
-    name: "Bánh Mì (Sandwich)",
-    blurb:
-      "Crisp baguette with pickled veggies, cilantro, jalapeño, and house pâté/mayo.",
-    items: ["Bánh Mì Thịt Nướng (Grilled Pork)", "Bánh Mì Gà", "Bánh Mì Chay (Tofu)"]
+    name: "Bánh Mì",
+    blurb: "Crusty baguettes, house spreads, pickles & cilantro.",
+    items: ["Thịt Nướng", "Gà Nướng", "Chay (Tofu)"],
   },
   {
-    name: "Bún (Vermicelli Bowls)",
-    blurb:
-      "Cool rice vermicelli with herbs, pickles, peanuts, and nước chấm.",
-    items: ["Bún Thịt Nướng", "Bún Bò Nướng", "Bún Chay"]
+    name: "Bún (Vermicelli)",
+    blurb: "Cool vermicelli bowls with fresh herbs & peanuts.",
+    items: ["Bún Thịt Nướng", "Bún Bò Nướng", "Bún Chay"],
   },
-  {
-    name: "Cơm (Rice Plates)",
-    blurb:
-      "Fragrant jasmine rice with grilled meats, pickles, and house sauces.",
-    items: ["Cơm Tấm Sườn (Pork Chop)", "Cơm Gà Nướng", "Cơm Bò Lúc Lắc"]
-  },
-  {
-    name: "Drinks & Desserts",
-    blurb:
-      "Vietnamese coffee, fresh sugarcane juice, chè, and seasonal specials.",
-    items: ["Cà Phê Sữa Đá", "Trà Sữa", "Chè Ba Màu"]
-  }
 ];
 
 export default function VietnameseRestaurantSite() {
-  return (
-    <div className="min-h-screen bg-[var(--cream)] text-[var(--text)]">
-      {/* Brand Palette */}
-      <style>{`
-        :root {
-          --brown: #2d1f1a;       /* main dark brown */
-          --bronze: #b08d57;      /* bronze */
-          --cream: #f6efe7;       /* cream */
-          --gold: #c7a008;        /* gold */
-          --orange: #f97316;      /* orange */
-          --white: #ffffff;       /* white */
-          --text: #312a25;        /* deep neutral for body text */
-        }
-        .gold-gradient { background: linear-gradient(135deg, var(--gold), var(--bronze)); }
-        .hero-overlay { background: linear-gradient(180deg, rgba(45,31,26,.55), rgba(45,31,26,.7)); }
-        .card { box-shadow: 0 10px 30px rgba(0,0,0,.08); }
-        .ring-gold { box-shadow: 0 0 0 3px rgba(199,160,8,.18); }
-      `}</style>
+  const tel = PHONE.replace(/[^\d]/g, "");
+  const iconSm = { size: 16, "aria-hidden": true };
+  const iconMd = { size: 20, "aria-hidden": true };
 
-      {/* Top Bar / Nav */}
-      <header className="sticky top-0 z-50 backdrop-blur bg-[var(--cream)]/70 border-b border-[rgba(0,0,0,.06)]">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="flex items-center justify-between h-16">
-            <a href="#home" className="flex items-center gap-3 group">
-              {/* Logo placeholder – swap with your real logo */}
-              <div
-                className="size-9 rounded-xl gold-gradient ring-gold group-hover:scale-105 transition-transform"
-                aria-hidden
-                title="Logo placeholder"
-              />
-              <span className="font-semibold tracking-tight text-lg sm:text-xl text-[var(--brown)]">
-                {RESTAURANT_NAME}
-              </span>
-            </a>
-            <nav className="hidden md:flex items-center gap-6 text-sm">
-              <a href="#menu" className="hover:text-[var(--brown)] transition">Menu</a>
-              <a href="#about" className="hover:text-[var(--brown)] transition">About</a>
-              <a href="#gallery" className="hover:text-[var(--brown)] transition">Gallery</a>
-              <a href="#visit" className="hover:text-[var(--brown)] transition">Visit</a>
-              <a href="#contact" className="px-3 py-2 rounded-lg text-white bg-[var(--brown)] hover:opacity-90 transition">
-                Order / Call
-              </a>
-            </nav>
-          </div>
+  return (
+    <div className="site">
+      {/* Promo strip (hours + specials) */}
+      <div className="promo-strip">
+        <div className="container">
+          <span className="promo-pill">
+            <LuClock {...iconSm} /> Open 10am–5pm · Wed Closed
+          </span>
+          <a className="promo-link" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+            Weekend specials → Follow us on Instagram
+          </a>
+        </div>
+      </div>
+
+      {/* Header */}
+      <header className="site-header">
+        <div className="container header-inner">
+          <a href="#home" className="brand">
+            <div className="brand-mark" aria-hidden />
+            <span className="brand-name">{RESTAURANT_NAME}</span>
+          </a>
+          <nav className="nav">
+            <a href="#menu">Menu</a>
+            <a href="#about">About</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#visit">Visit</a>
+            <a href="#contact" className="btn btn--brown">Order / Call</a>
+          </nav>
         </div>
       </header>
 
       {/* Hero */}
-      <section id="home" className="relative">
-        {/* Replace the src below with your hero image */}
-        <div className="relative h-[62vh] min-h-[420px] w-full overflow-hidden">
-          <img
-            src="/images/hero-placeholder.jpg"
-            alt="Vietnamese cuisine hero"
-            className="absolute inset-0 size-full object-cover"
-          />
-          <div className="hero-overlay absolute inset-0" />
-          <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-[var(--cream)] px-4">
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-1 text-xs tracking-wide">
-              <Utensils className="size-4" /> Authentic • Cozy • Family-Owned
-            </span>
-            <h1 className="mt-4 text-3xl sm:text-5xl font-extrabold leading-tight">
-              Taste the Heart of Vietnam
-            </h1>
-            <p className="mt-4 max-w-2xl text-sm sm:text-base opacity-95">
-              Phở, bánh mì, bún, and more—crafted with time-honored recipes and
-              fresh local ingredients.
+      <section id="home" className="hero">
+        <img src="/images/hero-placeholder.jpg" alt="Vietnamese cuisine hero" className="hero-img" />
+        <div className="hero-overlay" />
+        <div className="hero-content container">
+          <span className="badge">
+            <LuUtensils {...iconSm} /> Authentic • Cozy • Family-Owned
+          </span>
+          <h1>Menu for every taste, made with care</h1>
+          <p>Fresh ingredients, no shortcuts—phở, bánh mì, bún & more.</p>
+          <div className="hero-cta">
+            <a href="#menu" className="btn btn--gold">View Menu</a>
+            <a href={WAITLIST_URL} className="btn btn--light" target="_blank" rel="noreferrer">
+              <SiYelp {...iconSm} /> Join Yelp Waitlist
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Signatures */}
+      <section className="section" id="signatures">
+        <div className="container section-head">
+          <h2>Signature Dishes</h2>
+          <p>Our most-loved plates—perfect for first-timers.</p>
+        </div>
+        <div className="container cards-3">
+          {SIGNATURES.map((d) => (
+            <article key={d.name} className="card">
+              <div className="card-img">
+                <img src={d.img} alt={d.name} />
+              </div>
+              <div className="card-body">
+                <h3>{d.name}</h3>
+                <p>{d.blurb}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Story */}
+      <section id="about" className="section section--alt">
+        <div className="container split">
+          <div className="split-media">
+            <img src="/images/about-hero.jpg" alt="House-made broths and fresh herbs" />
+          </div>
+          <div className="split-copy">
+            <h2>Our Story</h2>
+            <p>
+              From Saigon streets to your neighborhood table. We simmer broths for hours, bake
+              baguettes fresh, and make sauces in-house.
             </p>
-            <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-              <a
-                href="#menu"
-                className="px-5 py-2.5 rounded-xl bg-[var(--gold)] text-[var(--brown)] font-medium hover:brightness-105 transition"
-              >
-                Explore Menu
-              </a>
-              <a
-                href="tel:+15551234567"
-                className="px-5 py-2.5 rounded-xl bg-[var(--cream)] text-[var(--brown)] font-medium hover:bg-white transition"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <Phone className="size-4" /> Call {PHONE}
-                </span>
-              </a>
+            <div className="chips">
+              <span className="chip"><LuUtensils {...iconSm} /> Family Recipes</span>
+              <span className="chip"><LuUtensils {...iconSm} /> Fresh Daily</span>
+              <span className="chip"><LuUtensils {...iconSm} /> Vegetarian Options</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Menu Preview */}
-      <section id="menu" className="py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[var(--brown)]">Menu Highlights</h2>
-              <p className="mt-2 text-sm sm:text-base text-neutral-700 max-w-2xl">
-                A glimpse of our guest favorites. Ask about vegetarian and gluten-friendly options.
-              </p>
-            </div>
-            <a
-              href="#contact"
-              className="hidden sm:inline-flex px-4 py-2 rounded-lg bg-[var(--orange)] text-white font-medium hover:opacity-90"
-            >
-              Ask About Catering
-            </a>
-          </div>
-
-          <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {MENU_CATEGORIES.map((cat) => (
-              <article key={cat.name} className="card rounded-2xl bg-white p-6 border border-[rgba(0,0,0,.06)]">
-                <div className="flex items-center gap-2">
-                  <div className="size-2.5 rounded-full gold-gradient" aria-hidden />
-                  <h3 className="text-lg font-semibold text-[var(--brown)]">{cat.name}</h3>
-                </div>
-                <p className="mt-2 text-sm text-neutral-700">{cat.blurb}</p>
-                <ul className="mt-4 space-y-2 text-sm">
-                  {cat.items.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <Star className="size-4 text-[var(--gold)]" aria-hidden />
-                      <span>{item}</span>
+      {/* Menu preview */}
+      <section id="menu" className="section">
+        <div className="container section-head">
+          <h2>Menu Highlights</h2>
+          <p>A quick taste of what we serve—see full menu in-store or online.</p>
+        </div>
+        <div className="container cards-3">
+          {MENU_CATEGORIES.map((cat) => (
+            <article key={cat.name} className="card">
+              <div className="card-body">
+                <div className="dot" />
+                <h3>{cat.name}</h3>
+                <p>{cat.blurb}</p>
+                <ul className="list">
+                  {cat.items.map((it) => (
+                    <li key={it}>
+                      <LuStar {...iconSm} className="gold" /> {it}
                     </li>
                   ))}
                 </ul>
-              </article>
-            ))}
-          </div>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-            <a href="#contact" className="px-5 py-2.5 rounded-xl bg-[var(--brown)] text-white hover:opacity-90">
-              Full Menu / Order Online
-            </a>
-            <a href="#about" className="px-5 py-2.5 rounded-xl bg-[var(--cream)] text-[var(--brown)] hover:bg-white">
-              Learn Our Story
-            </a>
-          </div>
+              </div>
+            </article>
+          ))}
         </div>
-      </section>
-
-      {/* About / Story */}
-      <section id="about" className="py-16 sm:py-20 bg-[var(--white)] border-y border-[rgba(0,0,0,.06)]">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-          <div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--brown)]">Our Story</h2>
-            <p className="mt-3 text-neutral-700 leading-relaxed">
-              From Saigon streets to your neighborhood table, we bring the warmth of
-              Vietnamese home cooking. Our broths simmer for hours, herbs are fresh
-              every morning, and each dish is prepared to order.
-            </p>
-            <p className="mt-3 text-neutral-700 leading-relaxed">
-              Whether you’re craving a comforting bowl of phở or a toasted bánh mì,
-              we’ve crafted a menu that honors tradition while welcoming new guests.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--cream)] px-3 py-1 text-xs">
-                <Utensils className="size-4" /> Family Recipes
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--cream)] px-3 py-1 text-xs">
-                <Utensils className="size-4" /> Fresh Daily
-              </span>
-              <span className="inline-flex items-center gap-2 rounded-full bg-[var(--cream)] px-3 py-1 text-xs">
-                <Utensils className="size-4" /> Vegetarian Options
-              </span>
-            </div>
-          </div>
-
-          {/* Image Collage – swap src with your images */}
-          <div className="grid grid-cols-3 gap-3">
-            <img src="/images/about-1.jpg" alt="Broth simmering" className="rounded-xl object-cover aspect-square" />
-            <img src="/images/about-2.jpg" alt="Fresh herbs" className="rounded-xl object-cover aspect-square" />
-            <img src="/images/about-3.jpg" alt="Bánh mì prep" className="rounded-xl object-cover aspect-square" />
-          </div>
+        <div className="container center gap">
+          <a href="#contact" className="btn btn--brown">Full Menu / Order Online</a>
+          <a href="#gallery" className="btn btn--light">See Photos</a>
         </div>
       </section>
 
       {/* Gallery */}
-      <section id="gallery" className="py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <div className="flex items-end justify-between gap-4">
-            <div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-[var(--brown)]">Gallery</h2>
-              <p className="mt-2 text-sm sm:text-base text-neutral-700">Swap these with your real photos.</p>
+      <section id="gallery" className="section section--alt">
+        <div className="container section-head">
+          <h2>Gallery</h2>
+          <p>Swap these placeholders with your real photos.</p>
+        </div>
+        <div className="container gallery-grid">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <div key={i} className="gallery-tile">
+              <img src={`/images/gallery-${i + 1}.jpg`} alt={`Dish ${i + 1}`} />
             </div>
-          </div>
-
-          <div className="mt-6 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {Array.from({ length: 8 }).map((_, i) => (
-              <div key={i} className="relative overflow-hidden rounded-xl bg-[var(--cream)] border border-[rgba(0,0,0,.06)]">
-                <img
-                  src={`/images/gallery-${i + 1}.jpg`}
-                  alt={`Dish ${i + 1}`}
-                  className="size-full object-cover aspect-square hover:scale-105 transition-transform"
-                />
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* Visit Us */}
-      <section id="visit" className="py-16 sm:py-20 bg-[var(--white)] border-y border-[rgba(0,0,0,.06)]">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="card rounded-2xl bg-white p-6 border border-[rgba(0,0,0,.06)]">
-            <h3 className="text-lg font-semibold text-[var(--brown)] flex items-center gap-2">
-              <MapPin className="size-5" /> Location
-            </h3>
-            <p className="mt-2 text-neutral-700">{ADDRESS}</p>
-            <a
-              className="mt-3 inline-flex text-sm underline underline-offset-4 hover:text-[var(--brown)]"
-              href="https://maps.google.com" target="_blank" rel="noreferrer"
-            >
-              Open in Google Maps
+      {/* Visit / Hours / Contact */}
+      <section id="visit" className="section">
+        <div className="container tiles">
+          <div className="tile">
+            <h3><LuMapPin {...iconMd} /> Location</h3>
+            <p>{ADDRESS}</p>
+            <a className="link" href={MAPS_URL} target="_blank" rel="noreferrer">
+              <SiGooglemaps {...iconSm} /> Open in Google Maps
             </a>
           </div>
 
-          <div className="card rounded-2xl bg-white p-6 border border-[rgba(0,0,0,.06)]">
-            <h3 className="text-lg font-semibold text-[var(--brown)] flex items-center gap-2">
-              <Clock className="size-5" /> Hours
-            </h3>
-            <ul className="mt-2 space-y-1 text-neutral-700 text-sm">
+          <div className="tile">
+            <h3><LuClock {...iconMd} /> Hours</h3>
+            <ul className="hours">
               {HOURS.map((h) => (
-                <li key={h.day} className="flex justify-between">
-                  <span>{h.day}</span>
-                  <span>{h.time}</span>
-                </li>
+                <li key={h.day}><span>{h.day}</span><span>{h.time}</span></li>
               ))}
             </ul>
           </div>
 
-          <div className="card rounded-2xl bg-white p-6 border border-[rgba(0,0,0,.06)]">
-            <h3 className="text-lg font-semibold text-[var(--brown)] flex items-center gap-2">
-              <Phone className="size-5" /> Contact
-            </h3>
-            <p className="mt-2 text-neutral-700">Call us to order or for catering.</p>
-            <a href={`tel:${PHONE.replace(/[^\d]/g, "")}`} className="mt-3 inline-flex items-center gap-2 font-medium text-[var(--brown)]">
-              <Phone className="size-4" /> {PHONE}
-            </a>
+          <div className="tile">
+            <h3><LuPhone {...iconMd} /> Contact</h3>
+            <p>Call us to order or for catering.</p>
+            <a href={`tel:${tel}`} className="link"><LuPhone {...iconSm} /> {PHONE}</a>
+            <div className="mini-cta">
+              <a href={WAITLIST_URL} className="btn btn--gold" target="_blank" rel="noreferrer">
+                <SiYelp {...iconSm} /> Join Yelp Waitlist
+              </a>
+            </div>
           </div>
+        </div>
+
+        {/* Map embed (swap query/address) */}
+        <div className="container map-wrap">
+          <iframe
+            title="Map"
+            className="map"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            src={`https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`}
+          />
         </div>
       </section>
 
       {/* Contact / CTA */}
-      <section id="contact" className="py-16 sm:py-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-[var(--brown)]">Ready to Dine?</h2>
-          <p className="mt-2 text-neutral-700 max-w-2xl mx-auto">
-            Reserve a table, call ahead for pickup, or ask about catering for your next event.
-          </p>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-            <a href="#menu" className="px-5 py-2.5 rounded-xl bg-[var(--gold)] text-[var(--brown)] font-medium hover:brightness-105">See Full Menu</a>
-            <a href={`tel:${PHONE.replace(/[^\d]/g, "")}`} className="px-5 py-2.5 rounded-xl bg-[var(--brown)] text-white font-medium hover:opacity-90">
-              <span className="inline-flex items-center gap-2"><Phone className="size-4"/> Call Us</span>
-            </a>
+      <section id="contact" className="section center">
+        <div className="container narrow">
+          <h2>Ready to Dine?</h2>
+          <p>Reserve a table, call ahead for pickup, or ask about catering for your next event.</p>
+          <div className="center gap">
+            <a href="#menu" className="btn btn--gold">See Full Menu</a>
+            <a href={`tel:${tel}`} className="btn btn--brown">Call Us</a>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[rgba(0,0,0,.06)] bg-[var(--cream)]">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
-              <div className="size-8 rounded-lg gold-gradient" aria-hidden />
-              <div>
-                <p className="font-semibold text-[var(--brown)]">{RESTAURANT_NAME}</p>
-                <p className="text-xs text-neutral-600">Authentic Vietnamese Cuisine</p>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-4">
-              {/* Swap href values with your real social URLs */}
-              <a href="#" aria-label="Instagram" className="p-2 rounded-md hover:bg-white transition" title="Instagram">
-                <Instagram className="size-5" />
-              </a>
-              <a href="#" aria-label="Facebook" className="p-2 rounded-md hover:bg-white transition" title="Facebook">
-                <Facebook className="size-5" />
-              </a>
-              <a href="#" aria-label="YouTube" className="p-2 rounded-md hover:bg-white transition" title="YouTube">
-                <Youtube className="size-5" />
-              </a>
-              <a href="#" aria-label="Yelp" className="p-2 rounded-md hover:bg-white transition" title="Yelp">
-                <Star className="size-5" />
-              </a>
+      <footer className="site-footer">
+        <div className="container footer-inner">
+          <div className="footer-brand">
+            <div className="brand-mark" aria-hidden />
+            <div>
+              <p className="brand-name">{RESTAURANT_NAME}</p>
+              <p className="tag">Authentic Vietnamese Cuisine</p>
             </div>
           </div>
-
-          <div className="mt-6 text-center sm:text-right text-xs text-neutral-600">
-            <span>© {new Date().getFullYear()} {RESTAURANT_NAME}. All rights reserved.</span>
-          </div>
+          <nav className="socials">
+            <a href={INSTAGRAM_URL} aria-label="Instagram" title="Instagram"><SiInstagram {...iconMd} /></a>
+            <a href="#" aria-label="Facebook" title="Facebook"><SiFacebook {...iconMd} /></a>
+            <a href="#" aria-label="YouTube" title="YouTube"><SiYoutube {...iconMd} /></a>
+            <a href={WAITLIST_URL} aria-label="Yelp" title="Yelp" target="_blank" rel="noreferrer"><SiYelp {...iconMd} /></a>
+          </nav>
+          <div className="copy">© {new Date().getFullYear()} {RESTAURANT_NAME}. All rights reserved.</div>
         </div>
       </footer>
     </div>
