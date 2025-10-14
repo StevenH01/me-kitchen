@@ -69,10 +69,14 @@ export default function VietnameseRestaurantSite() {
       {/* Header */}
       <header className="site-header">
         <div className="container header-inner">
-          <a href="#home" className="brand">
-            <div className="brand-mark" aria-hidden />
-            <span className="brand-name">{RESTAURANT_NAME}</span>
-          </a>
+          <a href="#home" className="brand brand--stacked">
+          <img
+            src="/logo.png"
+            alt="Me Kitchen by Saigon Oi!"
+            className="brand-logo"
+          />
+          <span className="brand-name">{RESTAURANT_NAME}</span>
+        </a>
           <nav className="nav">
             <a href="#menu">Menu</a>
             <a href="#about">About</a>
@@ -85,7 +89,7 @@ export default function VietnameseRestaurantSite() {
 
       {/* Hero */}
       <section id="home" className="hero">
-        <img src="/images/hero-placeholder.jpg" alt="Vietnamese cuisine hero" className="hero-img" />
+        <img src="/mek.png" alt="Vietnamese cuisine hero" className="hero-img" />
         <div className="hero-overlay" />
         <div className="hero-content container">
           <span className="badge">

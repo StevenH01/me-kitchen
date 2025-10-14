@@ -21,14 +21,30 @@
 .site-header{ position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.1) blur(8px);
   background:rgba(246,239,231,.85); border-bottom:1px solid rgba(0,0,0,.06); }
 .header-inner{ display:flex; align-items:center; justify-content:space-between; height:64px; }
-.brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit; }
+.brand{
+  display:flex;
+  flex-direction:column;        /* stack logo above the name */
+  align-items:flex-start;
+  gap:6px;
+  text-decoration:none;
+  color:inherit;
+}
+.brand-logo{
+  height: 36px;                 /* adjust as needed */
+  width: auto;
+  display: block;
+  transition: transform .15s ease;
+}
+.brand:hover .brand-logo{ transform: scale(1.03); }
 .brand-mark{ width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,var(--gold),var(--bronze)); box-shadow:0 0 0 3px rgba(199,160,8,.18); }
 .brand-name{ font-weight:600; color:var(--brown); }
+
 .nav{ display:none; gap:24px; font-size:.95rem; }
 .nav a{ color:inherit; text-decoration:none; }
 .nav a:hover{ color:var(--brown); }
-@media(min-width:768px){ .nav{ display:flex; } }
-
+@media (min-width: 960px){
+  .brand{ flex-direction:row; align-items:center; gap:12px; }
+}
 /* Hero */
 .hero{ position:relative; min-height:62vh; }
 .hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
