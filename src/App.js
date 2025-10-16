@@ -5,20 +5,20 @@ import { LuMapPin, LuUtensils, LuPhone, LuClock, LuStar } from "react-icons/lu";
 import { SiInstagram, SiFacebook, SiYoutube, SiYelp, SiGooglemaps } from "react-icons/si";
 
 // --- Business info (replace these) ---
-const RESTAURANT_NAME = "Your Vietnamese Kitchen";
+const RESTAURANT_NAME = "Mẹ Kitchen";
 const PHONE = "(555) 123-4567";
-const ADDRESS = "Fair Oaks, 2610 Fair Oaks Blvd, Sacramento, CA 95864";
+const ADDRESS = "Fair Oaks, 2611 Fair Oak7 Blvd, Sacramento, CA 95864";
 const WAITLIST_URL = "https://www.yelp.com/biz/saigon-oi-sacramento"; // replace with your Yelp waitlist if you have one
 const INSTAGRAM_URL = "https://www.instagram.com/_saigonoi/";         // replace with your IG
 const MAPS_URL  = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 const HOURS = [
-  { day: "Mon", time: "10:00 AM – 5:00 PM" },
-  { day: "Tue", time: "10:00 AM – 5:00 PM" },
+  { day: "Mon", time: "11:00 AM – 7:00 PM" },
+  { day: "Tue", time: "11:00 AM – 7:00 PM" },
   { day: "Wed", time: "Closed" },
-  { day: "Thu", time: "10:00 AM – 5:00 PM" },
-  { day: "Fri", time: "10:00 AM – 5:00 PM" },
-  { day: "Sat", time: "10:00 AM – 5:00 PM" },
-  { day: "Sun", time: "10:00 AM – 5:00 PM" },
+  { day: "Thu", time: "11:00 AM – 7:00 PM" },
+  { day: "Fri", time: "11:00 AM – 7:00 PM" },
+  { day: "Sat", time: "11:00 AM – 7:00 PM" },
+  { day: "Sun", time: "11:00 AM – 7:00 PM" },
 ];
 
 // Signature dishes (inspired by Saigon Oi)
@@ -58,7 +58,7 @@ export default function VietnameseRestaurantSite() {
       <div className="promo-strip">
         <div className="container">
           <span className="promo-pill">
-            <LuClock {...iconSm} /> Open 10am–5pm · Wed Closed
+            <LuClock {...iconSm} /> Open 11am–5pm · Wed Closed
           </span>
           <a className="promo-link" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
             Weekend specials → Follow us on Instagram
@@ -174,7 +174,6 @@ export default function VietnameseRestaurantSite() {
         </div>
         <div className="container center gap">
           <a href="#contact" className="btn btn--brown">Full Menu / Order Online</a>
-          <a href="#gallery" className="btn btn--light">See Photos</a>
         </div>
       </section>
 
@@ -253,7 +252,11 @@ export default function VietnameseRestaurantSite() {
       <footer className="site-footer">
         <div className="container footer-inner">
           <div className="footer-brand">
-            <div className="brand-mark" aria-hidden />
+            <img
+              src="/logo.png"
+              alt="Me Kitchen by Saigon Oi!"
+              className="brand-logo"
+            />
             <div>
               <p className="brand-name">{RESTAURANT_NAME}</p>
               <p className="tag">Authentic Vietnamese Cuisine</p>
