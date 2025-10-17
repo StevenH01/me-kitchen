@@ -58,7 +58,7 @@ export default function VietnameseRestaurantSite() {
       <div className="promo-strip">
         <div className="container">
           <span className="promo-pill">
-            <LuClock {...iconSm} /> Open 11am–5pm · Wed Closed
+            <LuClock {...iconSm} /> Open 11am–7pm · Wed Closed
           </span>
           <a className="promo-link" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
             Weekend specials → Follow us on Instagram
