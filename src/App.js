@@ -265,7 +265,7 @@ export default function VietnameseRestaurantSite() {
           <nav className="socials">
             <a href={INSTAGRAM_URL} aria-label="Instagram" title="Instagram"><SiInstagram {...iconMd} /></a>
             <a href="#" aria-label="Facebook" title="Facebook"><SiFacebook {...iconMd} /></a>
-            <a href="#" aria-label="YouTube" title="YouTube"><SiYoutube {...iconMd} /></a>
+            {/* <a href="#" aria-label="YouTube" title="YouTube"><SiYoutube {...iconMd} /></a> */}
             <a href={WAITLIST_URL} aria-label="Yelp" title="Yelp" target="_blank" rel="noreferrer"><SiYelp {...iconMd} /></a>
           </nav>
           <div className="copy">© {new Date().getFullYear()} {RESTAURANT_NAME}. All rights reserved.</div>
