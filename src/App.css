@@ -86,7 +86,30 @@
 
 .split{ display:grid; grid-template-columns:1fr; gap:24px; align-items:center; }
 @media(min-width:1024px){ .split{ grid-template-columns:1.1fr .9fr; } }
-.split-media img{ width:100%; border-radius:18px; object-fit:cover; }
+/* Center the media column so a fixed-width image doesn't look off */
+.split-media{
+  display:flex;
+  justify-content:center;
+}
+
+/* Fixed desktop size */
+.story-image{
+  width: 560px;          /* pick your exact size */
+  height: 420px;         /* 4:3 to avoid distortion */
+  object-fit: cover;     /* crop to fill the box, never stretch */
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+/* Mobile fallback so it doesn't overflow small screens */
+@media (max-width: 640px){
+  .story-image{
+    width: 100%;
+    height: auto;        /* let height follow width on small screens */
+    aspect-ratio: 4 / 3; /* keep the 4:3 shape */
+  }
+}
+
 .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
 .chip{ display:inline-flex; align-items:center; gap:8px; background:var(--cream); padding:6px 10px; border-radius:999px; font-size:.8rem; }
 
