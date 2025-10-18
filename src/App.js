@@ -23,27 +23,39 @@ const HOURS = [
 
 // Signature dishes (inspired by Saigon Oi)
 const SIGNATURES = [
-  { name: "Bánh Mì Chảo", img: "/images/signature-bmc.jpg", blurb: "Sizzling skillet with filet mignon, egg, pâté & more." },
-  { name: "Bánh Canh Cua", img: "/images/signature-bcc.jpg", blurb: "Rich crab udon soup with shrimp & quail egg." },
-  { name: "Bánh Khọt",    img: "/images/signature-bk.jpg",  blurb: "Crispy mini rice cakes, herbs & nước chấm." },
+  { name: "Bánh Mì Chảo", img: "/food/dish2.jpg", blurb: "Sizzling skillet with filet mignon, egg, pâté & more." },
+  { name: "Phở Đặc Biệt", img: "/food/dish7.jpg", blurb: "Rich beef broth with vermicelli noodles & various beefs." },
+  { name: "Bánh Khọt",    img: "/food/dish4.jpg",  blurb: "Crispy mini rice cakes, herbs & nước chấm." },
 ];
 
 // Menu preview
 const MENU_CATEGORIES = [
   {
-    name: "Phở (Noodle Soup)",
-    blurb: "Slow-simmered broths with rice noodles & herbs.",
-    items: ["Phở Tái", "Phở Gà", "Phở Đặc Biệt"],
+    name: "Appetizers",
+    blurb: "Small bites to start the meal.",
+    items: [
+      "Egg Rolls (Chả giò)",
+      "Fish-Sauce Chicken Wings (Cánh gà chiên nước mắm)",
+      "French Fries (Khoai tây chiên)",
+    ],
   },
   {
-    name: "Bánh Mì",
-    blurb: "Crusty baguettes, house spreads, pickles & cilantro.",
-    items: ["Thịt Nướng", "Gà Nướng", "Chay (Tofu)"],
+    name: "Entrees",
+    blurb: "House favorites and comforting classics.",
+    items: [
+      "Banh Mi Chao (Bánh mì chảo)",
+      "Pho (Phở)",
+      "Shaken Beef (Bò lúc lắc)",
+    ],
   },
   {
-    name: "Bún (Vermicelli)",
-    blurb: "Cool vermicelli bowls with fresh herbs & peanuts.",
-    items: ["Bún Thịt Nướng", "Bún Bò Nướng", "Bún Chay"],
+    name: "Drinks",
+    blurb: "Iced and hot beverages.",
+    items: [
+      "Vietnamese Coffee (Cà phê sữa đá)",
+      "Coconut Coffee (Cà phê cốt dừa)",
+      "Thai Tea (Trà Thái)",
+    ],
   },
 ];
 
@@ -58,7 +70,7 @@ export default function VietnameseRestaurantSite() {
       <div className="promo-strip">
         <div className="container">
           <span className="promo-pill">
-            <LuClock {...iconSm} /> Open 11am–7pm · Wed Closed
+            <LuClock {...iconSm} /> Soft Opening October 28th Open 11am-7pm · Wed Closed
           </span>
           <a className="promo-link" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
             Weekend specials → Follow us on Instagram
@@ -89,14 +101,14 @@ export default function VietnameseRestaurantSite() {
 
       {/* Hero */}
       <section id="home" className="hero">
-        <img src="/mek.png" alt="Vietnamese cuisine hero" className="hero-img" />
+        <img src="/mek2.png" alt="Vietnamese cuisine hero" className="hero-img" />
         <div className="hero-overlay" />
         <div className="hero-content container">
           <span className="badge">
             <LuUtensils {...iconSm} /> Authentic • Cozy • Family-Owned
           </span>
           <h1>Menu for every taste, made with care</h1>
-          <p>Fresh ingredients, no shortcuts—phở, bánh mì, bún & more.</p>
+          <p>Fresh ingredients, no shortcuts—phở, bánh mì, & more.</p>
           <div className="hero-cta">
             <a href="#menu" className="btn btn--gold">View Menu</a>
             <a href={WAITLIST_URL} className="btn btn--light" target="_blank" rel="noreferrer">
@@ -131,13 +143,19 @@ export default function VietnameseRestaurantSite() {
       <section id="about" className="section section--alt">
         <div className="container split">
           <div className="split-media">
-            <img src="/images/about-hero.jpg" alt="House-made broths and fresh herbs" />
+            <img src="/food/SGOI_FOOD.jpg" alt="House-made broths and fresh herbs" className="story-image" loading="lazy"/>
           </div>
           <div className="split-copy">
             <h2>Our Story</h2>
             <p>
-              From Saigon streets to your neighborhood table. We simmer broths for hours, bake
-              baguettes fresh, and make sauces in-house.
+              From the streets of Saigon to our neighborhood table, we cook the dishes we grew up with—
+              recipes our parents taught us and flavors from home. Our broths start before sunrise, baguettes
+              are toasted crisp, and fresh herbs are washed by hand—just like our families did.
+            </p>
+            <p>
+              We opened this kitchen to bring those homemade dishes to our Sacramento community: food that
+              feels like a warm hello from family. Whether it’s a sizzling <em>bánh mì chảo</em>, a comforting bowl
+              of <em>phở</em>, or an iced <em>cà phê sữa đá</em>, we hope each bite brings you a little closer to Vietnam.
             </p>
             <div className="chips">
               <span className="chip"><LuUtensils {...iconSm} /> Family Recipes</span>
@@ -173,7 +191,7 @@ export default function VietnameseRestaurantSite() {
           ))}
         </div>
         <div className="container center gap">
-          <a href="#contact" className="btn btn--brown">Full Menu / Order Online</a>
+          <a href="#contact" className="btn btn--brown">Full Menu</a>
         </div>
       </section>
 
@@ -181,12 +199,16 @@ export default function VietnameseRestaurantSite() {
       <section id="gallery" className="section section--alt">
         <div className="container section-head">
           <h2>Gallery</h2>
-          <p>Swap these placeholders with your real photos.</p>
+          <p>Some of our Popular Dishes!</p>
         </div>
         <div className="container gallery-grid">
           {Array.from({ length: 8 }).map((_, i) => (
             <div key={i} className="gallery-tile">
-              <img src={`/images/gallery-${i + 1}.jpg`} alt={`Dish ${i + 1}`} />
+              <img
+                src={`/food/dish${i + 1}.jpg`}  // <-- no hyphen
+                alt={`Dish ${i + 1}`}
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
