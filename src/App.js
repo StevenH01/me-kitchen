@@ -3,6 +3,7 @@ import "./App.css";
 
 import { LuMapPin, LuUtensils, LuPhone, LuClock, LuStar } from "react-icons/lu";
 import { SiInstagram, SiFacebook, SiYoutube, SiYelp, SiGooglemaps } from "react-icons/si";
+import { FaBowlFood, FaUtensils, FaMartiniGlass } from "react-icons/fa6";
 
 import { Routes, Route, Link } from "react-router-dom";
 import Menu from "./pages/Menu";
@@ -60,6 +61,12 @@ const MENU_CATEGORIES = [
     ],
   },
 ];
+
+const CATEGORY_ICONS = {
+  Appetizers: FaBowlFood,
+  Entrees: FaUtensils,
+  Drinks: FaMartiniGlass,
+};
 
 export default function App() {
   return (
@@ -183,23 +190,31 @@ function VietnameseRestaurantSite() {
           <h2>Menu Highlights</h2>
           <p>A quick taste of what we serve—see full menu in-store or online.</p>
         </div>
+
         <div className="container cards-3">
-          {MENU_CATEGORIES.map((cat) => (
-            <article key={cat.name} className="card">
-              <div className="card-body">
-                <h3>{cat.name}</h3>
-                <p>{cat.blurb}</p>
-                <ul className="list">
-                  {cat.items.map((it) => (
-                    <li key={it}>
-                      <LuStar {...iconSm} className="gold" /> {it}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
+          {MENU_CATEGORIES.map((cat) => {
+            const Icon = CATEGORY_ICONS[cat.name] || FaUtensils;
+            return (
+              <article key={cat.name} className="card">
+                <div className="card-body">
+                  <h3 className="menu-cat">
+                    <Icon className="menu-cat__icon" aria-hidden="true" />
+                    {cat.name}
+                  </h3>
+                  <p>{cat.blurb}</p>
+                  <ul className="list">
+                    {cat.items.map((it) => (
+                      <li key={it}>
+                        <LuStar {...iconSm} className="gold" /> {it}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            );
+          })}
         </div>
+
         <div className="container center gap">
           <Link to="/menu" className="btn btn--brown">Full Menu</Link>
         </div>
