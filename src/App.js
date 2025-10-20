@@ -106,14 +106,17 @@ function VietnameseRestaurantSite() {
             className="brand-logo"
           />
           <span className="brand-name">{RESTAURANT_NAME}</span>
-        </a>
-          <nav className="nav">
-            <a href="#menu">Menu</a>
-            <a href="#about">About</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#visit">Visit</a>
-            <a href="#contact" className="btn btn--brown">Order / Call</a>
+          </a>
+           <nav className="nav" role="navigation" aria-label="Primary">
+            <a href="#menu" className="nav-link">Menu</a>
+            <a href="#about" className="nav-link">About</a>
+            <a href="#gallery" className="nav-link">Gallery</a>
+            <a href="#visit" className="nav-link">Visit</a>
           </nav>
+
+          <div className="header-actions">
+            <Link to="/menu" className="btn btn--brown">Full Menu</Link>
+          </div>
         </div>
       </header>
 

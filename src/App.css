@@ -77,12 +77,47 @@ img, svg, video, canvas { display: block; max-width: 100%; }
 .brand-mark{ width:36px; height:36px; border-radius:10px; background:linear-gradient(135deg,var(--gold),var(--bronze)); box-shadow:0 0 0 3px rgba(199,160,8,.18); }
 .brand-name{ font-weight:600; color:var(--brown); }
 
-.nav{ display:none; gap:24px; font-size:.95rem; }
-.nav a{ color:inherit; text-decoration:none; }
-.nav a:hover{ color:var(--brown); }
-@media (min-width: 960px){
-  .brand{ flex-direction:row; align-items:center; gap:12px; }
+/* Base nav styles */
+.nav{
+  display: flex;
+  align-items: center;        /* vertical centering for flex items */
+  gap: 24px;
+  font-size: .95rem;
 }
+
+.nav a{
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  padding: 8px 0;             /* hit area */
+  border-radius: 6px;         /* helps focus ring look nicer */
+  outline: none;
+}
+
+/* Animated underline on hover/active */
+.nav a::after{
+  content: "";
+  position: absolute;
+  left: 0; bottom: -6px;
+  height: 2px; width: 0;
+  background: var(--gold);
+  transition: width .18s ease;
+  border-radius: 2px;
+}
+.nav a:hover{ color: var(--brown); }
+.nav a:hover::after,
+.nav a.is-active::after{ width: 100%; }
+
+/* Keyboard focus */
+.nav a:focus-visible{
+  box-shadow: 0 0 0 2px rgba(199,160,8,.35);
+}
+
+/* Mobile: stack/clip if needed */
+@media (max-width: 640px){
+  .nav{ gap: 16px; font-size: .9rem; }
+}
+
 /* Hero */
 .hero{ position:relative; min-height:62vh; }
 .hero-img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
