@@ -4,7 +4,9 @@ import "./App.css";
 import { LuMapPin, LuUtensils, LuPhone, LuClock, LuStar } from "react-icons/lu";
 import { SiInstagram, SiFacebook, SiYoutube, SiYelp, SiGooglemaps } from "react-icons/si";
 
-// --- Business info (replace these) ---
+import { Routes, Route, Link } from "react-router-dom";
+import Menu from "./pages/Menu";
+
 const RESTAURANT_NAME = "Mẹ Kitchen";
 const PHONE = "(555) 123-4567";
 const ADDRESS = "Fair Oaks, 2611 Fair Oak7 Blvd, Sacramento, CA 95864";
@@ -59,7 +61,16 @@ const MENU_CATEGORIES = [
   },
 ];
 
-export default function VietnameseRestaurantSite() {
+export default function App() {
+  return (
+    <Routes>
+      <Route path="/" element={<VietnameseRestaurantSite />} />
+      <Route path="/menu" element={<Menu />} />
+    </Routes>
+  );
+}
+
+function VietnameseRestaurantSite() {
   const tel = PHONE.replace(/[^\d]/g, "");
   const iconSm = { size: 16, "aria-hidden": true };
   const iconMd = { size: 20, "aria-hidden": true };
@@ -110,10 +121,10 @@ export default function VietnameseRestaurantSite() {
           <h1>Menu for every taste, made with care</h1>
           <p>Fresh ingredients, no shortcuts—phở, bánh mì, & more.</p>
           <div className="hero-cta">
-            <a href="#menu" className="btn btn--gold">View Menu</a>
-            <a href={WAITLIST_URL} className="btn btn--light" target="_blank" rel="noreferrer">
+            <Link to="/menu" className="btn btn--brown">Full Menu</Link>
+            {/* <a href={WAITLIST_URL} className="btn btn--light" target="_blank" rel="noreferrer">
               <SiYelp {...iconSm} /> Join Yelp Waitlist
-            </a>
+            </a> */}
           </div>
         </div>
       </section>
@@ -176,7 +187,6 @@ export default function VietnameseRestaurantSite() {
           {MENU_CATEGORIES.map((cat) => (
             <article key={cat.name} className="card">
               <div className="card-body">
-                <div className="dot" />
                 <h3>{cat.name}</h3>
                 <p>{cat.blurb}</p>
                 <ul className="list">
@@ -191,7 +201,7 @@ export default function VietnameseRestaurantSite() {
           ))}
         </div>
         <div className="container center gap">
-          <a href="#contact" className="btn btn--brown">Full Menu</a>
+          <Link to="/menu" className="btn btn--brown">Full Menu</Link>
         </div>
       </section>
 
@@ -238,11 +248,11 @@ export default function VietnameseRestaurantSite() {
             <h3><LuPhone {...iconMd} /> Contact</h3>
             <p>Call us to order or for catering.</p>
             <a href={`tel:${tel}`} className="link"><LuPhone {...iconSm} /> {PHONE}</a>
-            <div className="mini-cta">
+            {/* <div className="mini-cta">
               <a href={WAITLIST_URL} className="btn btn--gold" target="_blank" rel="noreferrer">
                 <SiYelp {...iconSm} /> Join Yelp Waitlist
               </a>
-            </div>
+            </div> */}
           </div>
         </div>
 
@@ -264,7 +274,7 @@ export default function VietnameseRestaurantSite() {
           <h2>Ready to Dine?</h2>
           <p>Reserve a table, call ahead for pickup, or ask about catering for your next event.</p>
           <div className="center gap">
-            <a href="#menu" className="btn btn--gold">See Full Menu</a>
+            <Link to="/menu" className="btn btn--brown">Full Menu</Link>
             <a href={`tel:${tel}`} className="btn btn--brown">Call Us</a>
           </div>
         </div>
@@ -288,7 +298,7 @@ export default function VietnameseRestaurantSite() {
             <a href={INSTAGRAM_URL} aria-label="Instagram" title="Instagram"><SiInstagram {...iconMd} /></a>
             <a href="#" aria-label="Facebook" title="Facebook"><SiFacebook {...iconMd} /></a>
             {/* <a href="#" aria-label="YouTube" title="YouTube"><SiYoutube {...iconMd} /></a> */}
-            <a href={WAITLIST_URL} aria-label="Yelp" title="Yelp" target="_blank" rel="noreferrer"><SiYelp {...iconMd} /></a>
+            {/* <a href={WAITLIST_URL} aria-label="Yelp" title="Yelp" target="_blank" rel="noreferrer"><SiYelp {...iconMd} /></a> */}
           </nav>
           <div className="copy">© {new Date().getFullYear()} {RESTAURANT_NAME}. All rights reserved.</div>
         </div>
