@@ -111,15 +111,17 @@ export default function Menu() {
   return (
     <main className="menu-page">
       <section className="menu-hero">
-        <div className="container menu-hero-inner">
-          <h1>Full Menu</h1>
-          <p>Fresh, homemade dishes inspired by our families and homeland.</p>
-          <div className="menu-tabs">
-            {MENU.map(sec => (
-              <a key={sec.id} href={`#${sec.id}`} className="menu-tab">
-                {sec.title}
-              </a>
-            ))}
+        <div className="container">
+          <div className="menu-hero-inner">
+            <h1>Full Menu</h1>
+            <p>Fresh, homemade dishes inspired by our families and homeland.</p>
+            <div className="menu-tabs">
+              {MENU.map(sec => (
+                <a key={sec.id} href={`#${sec.id}`} className="menu-tab">
+                  {sec.title}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
