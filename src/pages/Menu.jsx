@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { LuArrowLeft } from "react-icons/lu";
 
 const MENU = [
   {
@@ -110,6 +111,20 @@ const MENU = [
 export default function Menu() {
   return (
     <main className="menu-page">
+      <header className="menu-topbar">
+        <div className="container menu-topbar__inner">
+          <Link to="/" className="menu-back">
+            <LuArrowLeft aria-hidden className="menu-back__icon" />
+            <span>Back to Home</span>
+          </Link>
+
+          {/* Optional: tiny brand on the right */}
+          <div className="menu-brand">
+            <img src="/mek.png" alt="" className="menu-brand__logo" />
+            <span className="menu-brand__name">Mẹ Kitchen</span>
+          </div>
+        </div>
+      </header>
       <section className="menu-hero">
         <div className="container">
           <div className="menu-hero-inner">
