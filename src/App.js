@@ -99,7 +99,7 @@ function VietnameseRestaurantSite() {
       {/* Header */}
       <header className="site-header">
         <div className="container header-inner">
-          <a href="#home" className="brand brand--stacked">
+          <a href="#home" className="brand">
           <img
             src="/logo.png"
             alt="Me Kitchen by Saigon Oi!"
