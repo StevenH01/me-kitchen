@@ -9,7 +9,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Menu from "./pages/Menu";
 
 const RESTAURANT_NAME = "Mẹ Kitchen";
-const PHONE = "(555) 123-4567";
+const PHONE = "(279) 345-0727";
 const ADDRESS = "Fair Oaks, 2611 Fair Oak7 Blvd, Sacramento, CA 95864";
 const WAITLIST_URL = "https://www.yelp.com/biz/saigon-oi-sacramento"; // replace with your Yelp waitlist if you have one
 const INSTAGRAM_URL = "https://www.instagram.com/mes_kitchen_/";         // replace with your IG
