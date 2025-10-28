@@ -11,7 +11,7 @@ import Menu from "./pages/Menu";
 const RESTAURANT_NAME = "Mẹ Kitchen";
 const PHONE = "(279) 345-0727";
 const ADDRESS = "Fair Oaks, 2611 Fair Oak7 Blvd, Sacramento, CA 95864";
-const WAITLIST_URL = "https://www.yelp.com/biz/saigon-oi-sacramento"; // replace with your Yelp waitlist if you have one
+const WAITLIST_URL = "https://www.yelp.com/biz/me-s-kitchen-sacramento?osq=me+kitchen"; // replace with your Yelp waitlist if you have one
 const INSTAGRAM_URL = "https://www.instagram.com/mes_kitchen_/";         // replace with your IG
 const MAPS_URL  = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 const HOURS = [
@@ -131,9 +131,9 @@ function VietnameseRestaurantSite() {
           <p>Fresh ingredients, no shortcuts—phở, bánh mì, & more.</p>
           <div className="hero-cta">
             <Link to="/menu" className="btn btn--brown">Full Menu</Link>
-            {/* <a href={WAITLIST_URL} className="btn btn--light" target="_blank" rel="noreferrer">
+            <a href={WAITLIST_URL} className="btn btn--light" target="_blank" rel="noreferrer">
               <SiYelp {...iconSm} /> Join Yelp Waitlist
-            </a> */}
+            </a>
           </div>
         </div>
       </section>
@@ -232,7 +232,7 @@ function VietnameseRestaurantSite() {
           {Array.from({ length: 8 }).map((_, i) => (
             <div key={i} className="gallery-tile">
               <img
-                src={`/food/dish${i + 1}.jpg`}  // <-- no hyphen
+                src={`/food/dish${i + 1}.jpg`} 
                 alt={`Dish ${i + 1}`}
                 loading="lazy"
               />
@@ -265,11 +265,11 @@ function VietnameseRestaurantSite() {
             <h3><LuPhone {...iconMd} /> Contact</h3>
             <p>Call us to order or for catering.</p>
             <a href={`tel:${tel}`} className="link"><LuPhone {...iconSm} /> {PHONE}</a>
-            {/* <div className="mini-cta">
+            <div className="mini-cta">
               <a href={WAITLIST_URL} className="btn btn--gold" target="_blank" rel="noreferrer">
                 <SiYelp {...iconSm} /> Join Yelp Waitlist
               </a>
-            </div> */}
+            </div>
           </div>
         </div>
 
@@ -315,7 +315,7 @@ function VietnameseRestaurantSite() {
             <a href={INSTAGRAM_URL} aria-label="Instagram" title="Instagram"><SiInstagram {...iconMd} /></a>
             <a href="#" aria-label="Facebook" title="Facebook"><SiFacebook {...iconMd} /></a>
             {/* <a href="#" aria-label="YouTube" title="YouTube"><SiYoutube {...iconMd} /></a> */}
-            {/* <a href={WAITLIST_URL} aria-label="Yelp" title="Yelp" target="_blank" rel="noreferrer"><SiYelp {...iconMd} /></a> */}
+            <a href={WAITLIST_URL} aria-label="Yelp" title="Yelp" target="_blank" rel="noreferrer"><SiYelp {...iconMd} /></a>
           </nav>
           <div className="copy">© {new Date().getFullYear()} {RESTAURANT_NAME}. All rights reserved.</div>
         </div>
