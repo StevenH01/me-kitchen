@@ -488,3 +488,27 @@ img, svg, video, canvas { display: block; max-width: 100%; }
     padding: 10px 14px; 
   }
 }
+
+.map-wrap{
+  position: relative;            /* lets the overlay sit on top */
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+/* full-size invisible link that captures clicks */
+.map-overlay{
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+}
+
+/* default: mobile opens Maps on click (overlay active) */
+.map{ width:100%; height:360px; border:0; pointer-events: none; }
+
+/* desktop: allow pan/zoom; overlay hidden */
+@media (min-width: 768px){
+  .map-overlay{ display: none; }
+  .map{ pointer-events: auto; }
+}

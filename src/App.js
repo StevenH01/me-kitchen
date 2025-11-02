@@ -10,7 +10,7 @@ import Menu from "./pages/Menu";
 
 const RESTAURANT_NAME = "Mẹ Kitchen";
 const PHONE = "(279) 345-0727";
-const ADDRESS = "Fair Oaks, 2611 Fair Oak7 Blvd, Sacramento, CA 95864";
+const ADDRESS = "2610 Fair Oaks Blvd, Sacramento, CA 95864";
 const WAITLIST_URL = "https://www.yelp.com/biz/me-s-kitchen-sacramento?osq=me+kitchen"; // replace with your Yelp waitlist if you have one
 const INSTAGRAM_URL = "https://www.instagram.com/mes_kitchen_/";         // replace with your IG
 const MAPS_URL  = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
@@ -275,6 +275,15 @@ function VietnameseRestaurantSite() {
 
         {/* Map embed (swap query/address) */}
         <div className="container map-wrap">
+          {/* Click-through overlay (mobile) */}
+          <a
+            href={MAPS_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="map-overlay"
+            aria-label={`Open ${ADDRESS} in Google Maps`}
+            title="Open in Google Maps"
+          />
           <iframe
             title="Map"
             className="map"
