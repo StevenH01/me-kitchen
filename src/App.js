@@ -28,7 +28,7 @@ const HOURS = [
 const SIGNATURES = [
   { name: "Bánh Mì Chảo", img: "/food/dish2.jpg", blurb: "Sizzling skillet with filet mignon, egg, pâté & more." },
   { name: "Phở Đặc Biệt", img: "/food/dish7.jpg", blurb: "Rich beef broth with vermicelli noodles & various beefs." },
-  { name: "Bánh Khọt",    img: "/food/dish4.jpg",  blurb: "Crispy mini rice cakes, herbs & nước chấm." },
+  { name: "Bánh Khọt",    img: "/food/dish4.jpg",  blurb: "Crispy mini rice cakes, herbs & nước mắm." },
 ];
 
 // Menu preview
@@ -180,7 +180,7 @@ function VietnameseRestaurantSite() {
             <div className="chips">
               <span className="chip"><LuUtensils {...iconSm} /> Family Recipes</span>
               <span className="chip"><LuUtensils {...iconSm} /> Fresh Daily</span>
-              <span className="chip"><LuUtensils {...iconSm} /> Vegetarian Options</span>
+              <span className="chip"><LuUtensils {...iconSm} /> Good Portions</span>
             </div>
           </div>
         </div>
