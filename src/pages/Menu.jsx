@@ -33,6 +33,11 @@ const MENU = [
         price: 18,
       },
       {
+        vn: "SALAD GÀ NƯỚNG",
+        en: "Grilled Chicken Salad",
+        price: 18,
+      },
+      {
         vn: "MẸ SALAD",
         en: "Shaking Beef Salad",
         price: 18,
@@ -59,17 +64,22 @@ const MENU = [
         price: 21,
       },
       {
-        vn: "BÒ LÚC LẮC (CƠM ĐỎ / MỲ TỎI)",
+        vn: "BÒ LÚC LẮC (CƠM ĐỎ / MÌ TỎI)",
         en: "Vietnamese Shaking Filet Mignon Beef with Red Rice or Garlic Noodle",
         price: 21,
       },
       {
-        vn: "GÀ QUAY (CƠM ĐỎ / MỲ TỎI)",
+        vn: "GÀ XÀO SẢ ỚT (CƠM TRẮNG / MÌ TỎI",
+        en: "Stir Fried Lemongrass Chicken with White Rice or Garlic Noodle",
+        price: 19,
+      },
+      {
+        vn: "GÀ QUAY (CƠM ĐỎ / MÌ TỎI)",
         en: "Vietnamese Fried Chicken with Red Rice or Garlic Noodle",
         price: 19,
       },
       {
-        vn: "BEEF STEAK (CƠM ĐỎ / MỲ TỎI)",
+        vn: "BEEF STEAK (CƠM ĐỎ / MÌ TỎI)",
         en: "Rib Eye Steak with Red Rice or Garlic Noodle",
         price: 28,
       },
@@ -77,6 +87,11 @@ const MENU = [
         vn: "BÁNH MÌ GÀ NƯỚNG",
         en: "Grilled Chicken Vietnamese Bread",
         price: 14,
+      },
+      {
+        vn: "CHEF'S VEGETARIAN",
+        en: "Stir Fried Tofu and Vegetable with Rice or Garlic Noodle",
+        price: 19,
       },
     ],
   },
