@@ -11,8 +11,8 @@ import Menu from "./pages/Menu";
 const RESTAURANT_NAME = "Mẹ Kitchen";
 const PHONE = "(279) 345-0727";
 const ADDRESS = "2610 Fair Oaks Blvd, Sacramento, CA 95864";
-const WAITLIST_URL = "https://www.yelp.com/biz/me-s-kitchen-sacramento?osq=me+kitchen"; // replace with your Yelp waitlist if you have one
-const INSTAGRAM_URL = "https://www.instagram.com/mes_kitchen_/";         // replace with your IG
+const WAITLIST_URL = "https://www.yelp.com/biz/me-s-kitchen-sacramento?osq=me+kitchen";
+const INSTAGRAM_URL = "https://www.instagram.com/mes_kitchen_/";
 const MAPS_URL  = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 const HOURS = [
   { day: "Mon", time: "11:00 AM – 7:00 PM" },
@@ -132,7 +132,7 @@ function VietnameseRestaurantSite() {
           <div className="hero-cta">
             <Link to="/menu" className="btn btn--brown">Full Menu</Link>
             <a href={WAITLIST_URL} className="btn btn--light" target="_blank" rel="noreferrer">
-              <SiYelp {...iconSm} /> Join Yelp Waitlist
+              <SiYelp {...iconSm} /> View Yelp 
             </a>
           </div>
         </div>
@@ -267,7 +267,7 @@ function VietnameseRestaurantSite() {
             <a href={`tel:${tel}`} className="link"><LuPhone {...iconSm} /> {PHONE}</a>
             <div className="mini-cta">
               <a href={WAITLIST_URL} className="btn btn--gold" target="_blank" rel="noreferrer">
-                <SiYelp {...iconSm} /> Join Yelp Waitlist
+                <SiYelp {...iconSm} /> View Yelp 
               </a>
             </div>
           </div>
