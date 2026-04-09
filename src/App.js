@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 
 import { LuMapPin, LuUtensils, LuPhone, LuClock, LuStar } from "react-icons/lu";
-import { SiInstagram, SiFacebook, SiYoutube, SiYelp, SiGooglemaps } from "react-icons/si";
+import { SiInstagram, SiYelp, SiGooglemaps } from "react-icons/si";
 import { FaBowlFood, FaUtensils, FaMartiniGlass } from "react-icons/fa6";
 
 import { Routes, Route, Link } from "react-router-dom";
@@ -15,19 +15,19 @@ const WAITLIST_URL = "https://www.yelp.com/biz/me-s-kitchen-sacramento?osq=me+ki
 const INSTAGRAM_URL = "https://www.instagram.com/mes_kitchen_/";
 const MAPS_URL  = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`;
 const HOURS = [
-  { day: "Mon", time: "11:00 AM – 7:00 PM" },
-  { day: "Tue", time: "11:00 AM – 7:00 PM" },
+  { day: "Mon", time: "11:30 AM – 8:00 PM" },
+  { day: "Tue", time: "11:30 AM – 8:00 PM" },
   { day: "Wed", time: "Closed" },
-  { day: "Thu", time: "11:00 AM – 7:00 PM" },
-  { day: "Fri", time: "11:00 AM – 7:00 PM" },
-  { day: "Sat", time: "11:00 AM – 7:00 PM" },
-  { day: "Sun", time: "11:00 AM – 7:00 PM" },
+  { day: "Thu", time: "11:30 AM – 8:00 PM" },
+  { day: "Fri", time: "11:30 AM – 8:00 PM" },
+  { day: "Sat", time: "11:30 AM – 8:00 PM" },
+  { day: "Sun", time: "11:30 AM – 8:00 PM" },
 ];
 
 // Signature dishes (inspired by Saigon Oi)
 const SIGNATURES = [
   { name: "Bánh Mì Chảo", img: "/food/dish2.jpg", blurb: "Sizzling skillet with filet mignon, egg, pâté & more." },
-  { name: "Phở Đặc Biệt", img: "/food/dish7.jpg", blurb: "Rich beef broth with vermicelli noodles & various beefs." },
+  { name: "Me Kitchen Phở", img: "/food/dish7.jpg", blurb: "Rich beef broth with vermicelli noodles & various beefs." },
   { name: "Bánh Khọt",    img: "/food/dish4.jpg",  blurb: "Crispy mini rice cakes, herbs & nước mắm." },
 ];
 
@@ -88,11 +88,11 @@ function VietnameseRestaurantSite() {
       <div className="promo-strip">
         <div className="container">
           <span className="promo-pill">
-            <LuClock {...iconSm} /> Soft Opening October 28th Open 11am-7pm · Wed Closed
+            <LuClock {...iconSm} /> New Hours 11:30a.m - 8:00p.m · Wed Closed
           </span>
-          <a className="promo-link" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+          {/* <a className="promo-link" href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
             Weekend specials → Follow us on Instagram
-          </a>
+          </a> */}
         </div>
       </div>
 
@@ -295,7 +295,7 @@ function VietnameseRestaurantSite() {
       </section>
 
       {/* Contact / CTA */}
-      <section id="contact" className="section center">
+      <section id="contact" className="section center section--alt">
         <div className="container narrow">
           <h2>Ready to Dine?</h2>
           <p>Reserve a table, call ahead for pickup, or ask about catering for your next event.</p>
@@ -322,7 +322,7 @@ function VietnameseRestaurantSite() {
           </div>
           <nav className="socials">
             <a href={INSTAGRAM_URL} aria-label="Instagram" title="Instagram"><SiInstagram {...iconMd} /></a>
-            <a href="#" aria-label="Facebook" title="Facebook"><SiFacebook {...iconMd} /></a>
+            {/* <a href="#" aria-label="Facebook" title="Facebook"><SiFacebook {...iconMd} /></a> */}
             {/* <a href="#" aria-label="YouTube" title="YouTube"><SiYoutube {...iconMd} /></a> */}
             <a href={WAITLIST_URL} aria-label="Yelp" title="Yelp" target="_blank" rel="noreferrer"><SiYelp {...iconMd} /></a>
           </nav>
