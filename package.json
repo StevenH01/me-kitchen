@@ -35,5 +35,11 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-syntax-flow": "^7.28.6",
+    "@babel/plugin-transform-react-jsx": "^7.28.6",
+    "@testing-library/dom": "^10.4.1",
+    "typescript": "4.9.5"
   }
 }
