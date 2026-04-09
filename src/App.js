@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 
 import { LuMapPin, LuUtensils, LuPhone, LuClock, LuStar } from "react-icons/lu";
-import { SiInstagram, SiFacebook, SiYoutube, SiYelp, SiGooglemaps } from "react-icons/si";
+import { SiInstagram, SiFacebook, SiYelp, SiGooglemaps } from "react-icons/si";
 import { FaBowlFood, FaUtensils, FaMartiniGlass } from "react-icons/fa6";
 
 import { Routes, Route, Link } from "react-router-dom";
